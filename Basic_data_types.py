@@ -78,3 +78,8 @@ animals = ['cat', 'dog', 'monkey']
 for animal in animals:
     print animal
 # 출력 "cat", "dog", "monkey", 한 줄에 하나씩 출력.
+
+animals = ['cat', 'dog', 'monkey']
+for idx, animal in enumerate(animals):
+    print('#%d: %s' % (idx + 1, animal))
+# Prints "#1: cat", "#2: dog", "#3: monkey", each on its own line
