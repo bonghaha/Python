@@ -76,10 +76,112 @@ print(nums[:-1])  # range(0, 4) # [0, 1, 2, 3]
 # 반복문(Loop)
 animals = ['cat', 'dog', 'monkey']
 for animal in animals:
-    print animal
+    print(animal)
 # 출력 "cat", "dog", "monkey", 한 줄에 하나씩 출력.
 
 animals = ['cat', 'dog', 'monkey']
 for idx, animal in enumerate(animals):
     print('#%d: %s' % (idx + 1, animal))
 # Prints "#1: cat", "#2: dog", "#3: monkey", each on its own line
+
+# 리스트 comprehensions
+num = [0, 1, 2, 3, 4]
+squares = []
+for x in nums:
+    squares.append(x ** 2)
+print(squares)  # [0, 1, 4, 9, 16]
+
+# 리스트 comprehensions를 이용해서 위의 코드를 간단하게 만들 수 있다.
+nums = [0, 1, 2, 3, 4]
+squares = [x ** 2 for x in nums]
+print(squares)  # [0, 1, 4, 9 ,16]
+
+# 리스트 comprehensions에 조건 추가도 할 수 있다.
+nums = [0, 1, 2, 3, 4]
+even_squares = [x ** 2 for x in nums if x % 2 == 0]
+print(even_squares)  # [0, 4, 16]
+
+# 딕셔너리(dictionary) (키, 값)
+d = {'cat' : 'cute', 'dog' : 'furry'}  # dictionary 생성
+print(d['cat'])  # cute
+print('cat' in d)  # True
+d['fish'] = 'wet'
+print(d['fish'])  # wet
+print(d.get('monkey', 'N/A'))  # dictionary의 값을 받음. 존재하지 않는다면 'N/A'; 출력 : 'N/A'
+del d['fish']  # dictionary에 저장된 요소 삭제
+print(d.get('fish', 'N/A'))  # 'N/A'
+
+d = {'person': 2, 'cat': 4, 'spider': 8}
+for animal, legs in d.items():
+    print('A %s has %d legs' % (animal, legs))
+# A person has 2 legs
+# A cat has 4 legs
+# A spider has 8 legs
+
+# 딕셔너리 comprehensions를 이용해 손쉽게 딕셔너리를 만들 수 있다.
+nums = [0, 1, 2, 3, 4]
+even_num_to_square = {x: x ** 2 for x in nums if x % 2 == 0}
+print(even_num_to_square)  # {0: 0, 2: 4, 4: 16}
+
+# sets : 순서 구분이 없고 서로 다른 요소 간의 모임.
+animals = {'cat', 'dog'}
+print('cat' in animals)  # True
+print('fish' in animal)  # False
+animals.add('fish')  # 요소를 set에 추가
+print(len(animals))  # 집합에 포함된 요소의 수; 3
+animals.add('cat')  # 이미 포함되어 있는 요소를 추가할 경우 아무 변화 없음
+animals.remove('cat')  # 요소 cat을 집합에서 삭제
+print(len(animals))  # 2
+animals.add('cat')
+for idx, animal in enumerate(animals):
+    print('#%d: %s' % (idx + 1, animal))
+# set은 순서가 없어서 어떤 순서로 출력될지 추측할 수 없다.
+
+# set comprehensions
+from math import sqrt
+nums = {int(sqrt(x)) for x in range(30)}  # 30미만의 수 중 모든 제곱근
+print(nums)  # {0, 1, 2, 3, 4, 5}
+print(type(nums))  # <class 'set'>
+
+# tuple : 요소 간 순서 있으며 값이 변하지 않는 리스트.
+# tuple은 dictionary의 키와 set의 요소가 될 수 있지만, 리스트는 불가능하다.
+d = {(x, x + 1): x for x in range(10)}  # tuple을 key로 하는 dictionary 생성.
+print(d)  # {(0, 1): 0, (1, 2): 1, (2, 3): 2, (3, 4): 3, (4, 5): 4, (5, 6): 5, (6, 7): 6, (7, 8): 7, (8, 9): 8, (9, 10): 9}
+print(type(d))  # <class 'dict'>
+t = (5, 6)
+print(type(t))  # <class 'tuple'>
+print(d[t])  # 5
+print(d[(1, 2)])  # 1
+
+
+# 함수
+def hello(name, loud=False):
+    if loud:
+        print('HELLO, %s!' % name.upper())
+    else:
+        print('Hello, %s' % name)
+
+
+hello('Bob')  # "Hello, Bob"
+hello('Fred', loud=True)  # "HELLO, FRED!"
+
+
+# class
+class Greeter(object):
+    # 생성자
+    def __init__(self, name):
+        self.name = name  # 인스턴스 변수 선언
+
+    # 인스턴스 메서드
+    def greet(self, loud=False):
+        if loud:
+            print('HELLO, %s!' % self.name.upper())
+        else:
+            print('Hello, %s' % self.name)
+
+
+g = Greeter('Fred')  # Greeter 클래스의 인스턴스 생성
+g.greet()  # "Hello, Fred"
+g.greet(loud=True)  # "HELLO, FRED!"
+
+
