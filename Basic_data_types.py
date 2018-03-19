@@ -73,3 +73,13 @@ print(nums[:-1])  # range(0, 4) # [0, 1, 2, 3]
 # nums[2:4] = [8, 9]  # range 에는 특정한 값을 할당할 수 없다.
 # http://cs231n.github.io/python-numpy-tutorial/ 에서 잘못 됨.
 
+# 반복문(Loop)
+animals = ['cat', 'dog', 'monkey']
+for animal in animals:
+    print animal
+# 출력 "cat", "dog", "monkey", 한 줄에 하나씩 출력.
+
+animals = ['cat', 'dog', 'monkey']
+for idx, animal in enumerate(animals):
+    print('#%d: %s' % (idx + 1, animal))
+# Prints "#1: cat", "#2: dog", "#3: monkey", each on its own line
